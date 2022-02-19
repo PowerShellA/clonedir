@@ -2,7 +2,7 @@ import os
 import sys
 from glob import glob
 import argparse
-# clonedir.py -t
+# clonedir.py -t -r /home/
 
 # 参数处理
 parser = argparse.ArgumentParser(
@@ -17,13 +17,16 @@ args = parser.parse_args()
 
 if args.d_root == "/" or args.d_output == "/":
     print("[ERROR] 不允许克隆(到) / 目录")
-    exit(1)
+    sys.exit(1)
+
 
 # 构造路径
 d_root = args.d_root.strip().rstrip("/").replace("/"+__file__, "", -1)
 d_output = args.d_output.strip().rstrip("/").replace("/"+__file__, "", -1)
 
 if len(d_root) == 0:
+    print("[ERROR] 必须使用 -r 选项指定根目录，绝对路径。")
+    sys.exit(1)
     d_root = os.path.abspath(__file__).replace("/"+__file__, "", -1)
 
 if len(d_output) == 0:
@@ -36,12 +39,12 @@ print("输出目录 ", d_output)
 # 验证根目录是否存在
 if not os.path.exists(d_root):
     print("[ERROR] 源目录 "+d_output + " 不存在。")
-    exit(1)
+    sys.exit(1)
 
 # 如果输出目录存在则取消
 if os.path.exists(d_output):
     print("[ERROR] 输出目录 "+d_output + " 已存在，请删除后重试。")
-    exit(1)
+    sys.exit(1)
 
 # 创建目录
 dirs = [d for d in glob(d_root+"/**/", recursive=True)]
