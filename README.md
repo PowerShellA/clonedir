@@ -3,13 +3,13 @@
 
 ## Usage 用法
 ```` shell
-python clonedir.py [-h] [-r D_ROOT] [-o D_OUTPUT] [-t]  
+python clonedir.py [-t] [-s] [-h] [-r D_ROOT] [-o D_OUTPUT]
 python clonedir.py -t -r /home
 python clonedir.py -t -r /home -o /home_clone
 ````
 or 或者
 ```` shell
-clonedir [-h] [-r D_ROOT] [-o D_OUTPUT] [-t] 
+clonedir [-t] [-s] [-h] [-r D_ROOT] [-o D_OUTPUT]
 clonedir -t -r /home
 clonedir -t -r /home -o /home_clone
 ````
