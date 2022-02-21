@@ -22,13 +22,14 @@ parser = argparse.ArgumentParser(
 parser.add_argument("-r", "--root-dir", dest="d_root",
                     type=str, default="", help="要克隆的根文件夹绝对路径。")
 parser.add_argument("-o", "--output-dir", dest="d_output", type=str, default="",
-                    help="输出文件夹的绝对路径")
+                    help="输出文件夹的绝对路径。")
 parser.add_argument("-t", "--tar", dest="tar", help="生成tar归档。",
                     action="store_true")
 parser.add_argument("-s", "--symlink", dest="symlink", help="克隆符号链接内容。如果发现软链接，克隆软链接指向的目录。",
                     action="store_true")
 args = parser.parse_args()
 
+# 不允许从系统根目录开始克隆
 if args.d_root.strip() == "/" or args.d_output.strip() == "/":
     print("[ERROR] 不允许克隆(到) / 目录")
     sys.exit(1)
